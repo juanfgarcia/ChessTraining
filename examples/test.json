@@ -1,0 +1,25 @@
+[
+{
+"Event" : "Rated Rapid game",
+"Site" : "https://lichess.org/hPnWuh0n",
+"Date" : "2020.01.05",
+"Round" : "-",
+"White" : "hielo995",
+"Black" : "Hazard25",
+"Result" : "1-0",
+"WhiteElo" : "1048",
+"BlackElo" : "1303",
+"ECO" : "A43",
+"Opening" : "Franco-Benoni Defense",
+"TimeControl" : "600+0",
+"UTCDate" : "2020.01.05",
+"UTCTime" : "11:26:31",
+"Variant" : "Standard",
+"Termination" : "Normal",
+"WhiteRatingDiff" : "+11",
+"BlackRatingDiff" : "-10",
+
+"Moves":[{ "move" : "e2e4" }, { "move" : "e7e6" }, { "move" : "d2d4" }, { "move" : "c7c5" }, { "move" : "d4d5" }, { "move" : "e6d5" }, { "move" : "e4d5" }, { "move" : "b7b6" }, { "move" : "b1c3" }, { "move" : "c8b7" }, { "move" : "g1f3" }, { "move" : "g8f6" }, { "move" : "f1c4" }, { "move" : "f8d6" }, { "move" : "e1g1" }, { "move" : "e8g8" }, { "move" : "c3b5" }, { "move" : "b7a6" }, { "move" : "b5d6" }, { "move" : "a6c4" }, { "move" : "d6c4" }, { "move" : "f6d5" }, { "move" : "d1d5" }, { "move" : "b8c6" }, { "move" : "c1g5" }, { "move" : "d8c8" }, { "move" : "c4d6" }, { "move" : "c8a6" }, { "move" : "f3e5" }, { "move" : "c6e5" }, { "move" : "d5e5" }, { "move" : "b6b5" }, { "move" : "e5d5" }, { "move" : "c5c4" }, { "move" : "d6f7" }, { "move" : "a6c8" }, { "move" : "f7d6" }]
+
+}
+]
