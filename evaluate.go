@@ -1,41 +1,30 @@
 package main
 
 import (
-	"os"
-	"log"
-	"github.com/notnil/chess"
+	"github.com/clinaresl/pgnparser/pgntools"
 	"fmt"
-	"github.com/freeeve/uci"
 )
 
 func main() {
-	file, err := os.Open("examples/test.pgn")
-	if err != nil {
-		log.Fatal(err)
-	}
-	pgn, err := chess.PGN(file)
-	if err != nil {
-		log.Fatal(err)
-	}
-	game := chess.NewGame(pgn)
 	
-	eng, err := uci.NewEngine("cmd/stockfish")
-	if err != nil {
-		log.Fatal(err)
-	}
+	// Set config variables for pgnparser
+	var pgnfile string  = "examples/test.pgn"
+	var showboard int 
+	var query, sort string
+	var verbose bool = false
 	
-	for _, position := range game.Positions(){
-		fmt.Println(position)
-		eng.SetFEN(position.String())
-		// set some result filter options
-		resultOpts := uci.HighestDepthOnly | uci.IncludeUpperbounds | uci.IncludeLowerbounds
-		results, _ := eng.GoDepth(12, resultOpts)
+	games := pgntools.GetGamesFromFile(pgnfile, showboard, query, sort, verbose)
 
-		fmt.Printf("%d, %b\n" ,results.Results[0].Score, results.Results[0].Mate)
+	// For each game, get each position
+	// and for each position get it's FEN string
+	for _, game := range games.GetGames(){
+		
+		board := pgntools.InitPgnBoard()
+ 
+	    for _, move := range game.GetMoves() {
+			board.UpdateBoard(move, false)
+			fmt.Println(board.GetFen())
+	    }
+
 	}
-
-
-
-
-	
 }
