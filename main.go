@@ -1,63 +1,45 @@
 package main
 
 import (
-	"github.com/clinaresl/pgnparser/pgntools"
-	"github.com/juanfgarcia/uci"
 	"fmt"
+	"github.com/clinaresl/pgnparser/pgntools"
+	"github.com/juanfgarcia/ChessTraining/lichess"
+	"github.com/juanfgarcia/ChessTraining/uci"
 	"log"
-
 )
 
-const lowerBound = 250 
+const lowerBound = 300
 const depth = 3
 
 func main() {
-
-	var lastWhiteScore, lastBlackScore, turn = 0,0,-1
-
 	eng, err := uci.NewEngine("cmd/stockfish")
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	// Set config variables for pgnparser
-	var pgnfile string  = "examples/test.pgn"
-	var showboard int 
-	var query, sort string
-	var verbose bool = false
-	
-	games := pgntools.GetGamesFromFile(pgnfile, showboard, query, sort, verbose)
-
+    
+    games := Lichess.GetGames("juanfgcas")
 	// For each game, get each position
 	// and for each position get it's FEN string
-	for _, game := range games.GetGames(){
-		
+	for _, game := range games.GetGames() {
+		turn := 1
 		board := pgntools.InitPgnBoard()
- 
-	    for _, move := range game.GetMoves() {
+		for i, move := range game.GetMoves() {
+            if i == len(game.GetMoves())-1 {
+                break
+            }
 			board.UpdateBoard(move, false)
-			fen :=  board.GetFen()
-			//fmt.Println(fen)
+			turn *= -1 
+			fen := board.GetFen()
 			eng.SetFEN(fen)
-			resultOpts := uci.HighestDepthOnly
-			results, _ := eng.GoDepth(depth, resultOpts)
-			
-			score := results.Results[0].Score
-
-			if (turn==1){
-				if lastBlackScore-score >= lowerBound {
-					fmt.Println(fen)
-				}
-				lastBlackScore = score 
-			}else{
-				if lastWhiteScore-score >= lowerBound {
-					fmt.Println(fen)
-				}
-				lastWhiteScore = score
+			results, _ := eng.Go(2)
+			p0 := results.Score
+			results, _ = eng.Go(4)
+			p1 := results.Score
+			if p1-p0 > lowerBound {
+				fmt.Println(p1, p0)
+				fmt.Println(fen)
+				fmt.Println(results.BestMove)
 			}
-
-			turn = -turn
-	    }
-
+		}
 	}
 }

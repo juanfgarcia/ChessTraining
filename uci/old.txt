@@ -1,0 +1,15 @@
+goos: linux
+goarch: amd64
+pkg: github.com/juanfgarcia/ChessTraining/uci
+BenchmarkFib10-8   	    6074	    177534 ns/op
+BenchmarkFib10-8   	    6452	    174971 ns/op
+BenchmarkFib10-8   	    6238	    182938 ns/op
+BenchmarkFib10-8   	    6664	    177750 ns/op
+BenchmarkFib10-8   	    6385	    173750 ns/op
+BenchmarkFib10-8   	    6129	    185262 ns/op
+BenchmarkFib10-8   	    6222	    180152 ns/op
+BenchmarkFib10-8   	    6277	    178494 ns/op
+BenchmarkFib10-8   	    6092	    180849 ns/op
+BenchmarkFib10-8   	    6192	    177764 ns/op
+PASS
+ok  github.com/juanfgarcia/ChessTraining/uci	18.965s
